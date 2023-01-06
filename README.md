@@ -1,8 +1,6 @@
 # MLOPS_Tomato_Project
 
-Vicente Bosch
-Paloma Guiral
-Víctor Vigara
+Vicente Bosch & Paloma Guiral & Víctor Vigara
 
 ## Overall goal of the project
 The goal of the project is to use image models to predict and classify wich type of disease has a tomato leaf. 
