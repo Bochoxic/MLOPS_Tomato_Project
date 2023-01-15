@@ -37,8 +37,8 @@ def main(input_filepath, output_filepath):
     for dirs in valid_dirs[1:]: 
         n_imgs_valid += len(os.listdir(dirs))
 
-    train_images = torch.empty((n_imgs_train, 3, 256, 256))
-    train_labels = torch.empty(n_imgs_train)
+    train_images = []
+    train_labels = []
 
     c = 0
     for idx, dir in enumerate(train_dirs[1:]):
@@ -53,22 +53,20 @@ def main(input_filepath, output_filepath):
                         img.verify()
 
                         image_original = (Image.open(dir+'/'+image_dir))
-
+                        
+                        # If image has 4 channels, convert it to RGB
                         if image_original.mode == 'RGBA':
                             image_original = image_original.convert('RGB')
-
+                        # Resize image
                         if image_original.size != (256, 256):
                             image_resized = image_original.resize((256, 256))
                         else: 
                             image_resized = image_original
-                        
+                        # Convert image to tensor
                         image = convert_totensor(image_resized)
-                        
-                        try: 
-                            train_images[c] = image
-                        except: 
-                            a=1
-                        train_labels[c] = label_id
+                        # Append images in a list
+                        train_images.append(image)
+                        train_labels.append(label_id)
                         c += 1
                         print(f"Images: {c}/{n_imgs_train}")
                     else:
@@ -78,12 +76,12 @@ def main(input_filepath, output_filepath):
                 os.remove(dir+'/'+image_dir)
                 print(f'{dir}/{image_dir} was removed')
 
+    # Save train images and train labels
+    torch.save(torch.cat(train_images), output_filepath + '/train_images.pt')
+    torch.save(torch.tensor(train_labels), output_filepath + '/train_labels.pt')
 
-    torch.save(train_images, output_filepath + '/train_images.pt')
-    torch.save(train_labels, output_filepath + '/train_labels.pt')
-
-    valid_images = torch.empty((n_imgs_valid, 3, 256, 256))
-    valid_labels = torch.empty(n_imgs_valid)
+    valid_images = []
+    valid_labels = []
 
     c = 0
     for idx, dir in enumerate(valid_dirs[1:]):
@@ -110,8 +108,8 @@ def main(input_filepath, output_filepath):
                         
                         image = convert_totensor(image_resized)
                         
-                        valid_images[c] = image
-                        valid_labels[c] = label_id
+                        valid_images.append(image)
+                        valid_labels.append(label_id)
                         c += 1
                         print(f"Images: {c}/{n_imgs_valid}")
                     else:
@@ -121,8 +119,8 @@ def main(input_filepath, output_filepath):
                 os.remove(dir+'/'+image_dir)
                 print(f'{dir}/{image_dir} was removed')
 
-    torch.save(valid_images, output_filepath + '/valid_images.pt')
-    torch.save(valid_labels, output_filepath + '/valid_labels.pt')
+    torch.save(torch.cat(valid_images), output_filepath + '/valid_images.pt')
+    torch.save(torch.tensor(valid_labels), output_filepath + '/valid_labels.pt')
 
 
 if __name__ == '__main__':
