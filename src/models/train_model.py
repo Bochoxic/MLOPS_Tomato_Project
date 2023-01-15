@@ -13,14 +13,6 @@ import timm
 from torch import optim
 from model import Net
 
-<<<<<<< HEAD
-
-
-def train():
-
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f'Using torch device of type {device.type}{": " + torch.cuda.get_device_name(device) if device.type == "cuda" else ""}')
-=======
 import logging
 import hydra
 from omegaconf import DictConfig, OmegaConf
@@ -38,7 +30,6 @@ def train(config: DictConfig):
     logger.info("Start Training...")
     
     hparams = config.experiment.hyperparams #load the hyperparameters. config/experiment/exp1.yaml --> hyperparams
->>>>>>> add_hydra
 
     train_transformer = transforms.Compose([
     transforms.Resize((150,150)),
@@ -59,7 +50,6 @@ def train(config: DictConfig):
     testloader = DataLoader(torchvision.datasets.ImageFolder(project_path  + '/data/raw/tomato-disease-multiple-sources/valid', transform=test_transformer),batch_size=hparams["batch_size"],shuffle=True)
 
     model = Net()
-    model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=hparams["lr"])
 
@@ -68,13 +58,7 @@ def train(config: DictConfig):
         loss_tracker = []
         #contador=0
         for images, labels in trainloader:
-<<<<<<< HEAD
-            images = images.to(device)
-            labels = labels.to(device)
-            print(contador)
-=======
             #print(contador)
->>>>>>> add_hydra
             optimizer.zero_grad()
             log_ps = model(images)
             loss = criterion(log_ps, labels)
