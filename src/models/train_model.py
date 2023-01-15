@@ -14,7 +14,13 @@ import timm
 from torch import optim
 from model import Net
 
+
+
 def train():
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    print(f'Using torch device of type {device.type}{": " + torch.cuda.get_device_name(device) if device.type == "cuda" else ""}')
+
     train_transformer = transforms.Compose([
     transforms.Resize((150,150)),
     transforms.RandomHorizontalFlip(),
@@ -34,6 +40,7 @@ def train():
     testloader = DataLoader(torchvision.datasets.ImageFolder("data/raw/tomato-disease-multiple-sources/valid",transform=test_transformer),batch_size=32,shuffle=True)
 
     model = Net()
+    model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
@@ -43,6 +50,8 @@ def train():
         loss_tracker = []
         contador=0
         for images, labels in trainloader:
+            images = images.to(device)
+            labels = labels.to(device)
             print(contador)
             optimizer.zero_grad()
             log_ps = model(images)
