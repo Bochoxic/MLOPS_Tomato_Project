@@ -13,9 +13,7 @@ import matplotlib.pyplot as plt
 from torchvision.utils import save_image
 from PIL import ImageFile
 
-#@click.command()
-#@click.argument('input_filepath', type=click.Path(exists=True))
-#@click.argument('output_filepath', type=click.Path())
+
 def main(input_filepath, output_filepath):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
@@ -29,6 +27,7 @@ def main(input_filepath, output_filepath):
     #train
     train_dirs = [x[0] for x in os.walk(project_dir+input_filepath+"/train")]
     valid_dirs = [x[0] for x in os.walk(project_dir+input_filepath+"/valid")]
+    convert_totensor = transforms.ToTensor()
 
     n_imgs_train = 0
     for dirs in train_dirs[1:]: 
@@ -41,34 +40,44 @@ def main(input_filepath, output_filepath):
     train_images = torch.empty((n_imgs_train, 3, 256, 256))
     train_labels = torch.empty(n_imgs_train)
 
-    convert_totensor = transforms.ToTensor()
     c = 0
     for idx, dir in enumerate(train_dirs[1:]):
         images_dir = os.listdir(dir)
         label=dir.split("\\")[-1]
         label_id = idx
         for image_dir in images_dir:
-            
-            image_original = (Image.open(dir+'/'+image_dir))
+            try:
+                with Image.open(dir+'/'+image_dir) as img:
+                    # Check if file is an image
+                    if img.format in ['JPEG', 'PNG', 'GIF', 'BMP', 'TIFF']:
+                        img.verify()
 
-            if image_original.mode == 'RGBA':
-                image_original = image_original.convert('RGB')
+                        image_original = (Image.open(dir+'/'+image_dir))
 
-            if image_original.size != (256, 256):
-                image_resized = image_original.resize((256, 256))
-            else: 
-                image_resized = image_original
-            
-            image = convert_totensor(image_resized)
-            
-            try: 
-                train_images[c] = image
-            except: 
-                a=1
-            train_labels[c] = label_id
-            c += 1
-            print(f"Images: {c}/{n_imgs_train}")
-            
+                        if image_original.mode == 'RGBA':
+                            image_original = image_original.convert('RGB')
+
+                        if image_original.size != (256, 256):
+                            image_resized = image_original.resize((256, 256))
+                        else: 
+                            image_resized = image_original
+                        
+                        image = convert_totensor(image_resized)
+                        
+                        try: 
+                            train_images[c] = image
+                        except: 
+                            a=1
+                        train_labels[c] = label_id
+                        c += 1
+                        print(f"Images: {c}/{n_imgs_train}")
+                    else:
+                        os.remove(dir+'/'+image_dir)
+                        print(f'{dir}/{image_dir} was removed')
+            except (IOError, SyntaxError) as e:
+                os.remove(dir+'/'+image_dir)
+                print(f'{dir}/{image_dir} was removed')
+
 
     torch.save(train_images, output_filepath + '/train_images.pt')
     torch.save(train_labels, output_filepath + '/train_labels.pt')
@@ -82,35 +91,38 @@ def main(input_filepath, output_filepath):
         label=dir.split("\\")[-1]
         label_id = idx
         for image_dir in images_dir:
-            
-            image_original = (Image.open(dir+'/'+image_dir))
+            try:
+                with Image.open(dir+'/'+image_dir) as img:
+                    # Check if file is an image
+                    if img.format in ['JPEG', 'PNG', 'GIF', 'BMP', 'TIFF']:
+                        img.verify()
+                        image_original = (Image.open(dir+'/'+image_dir))
 
-            if image_original.mode == 'RGBA':
-                try: 
-                    image_original = image_original.convert('RGB')
-                except: 
-                    a = 1
-            if image_original.size != (256, 256):
-                image_resized = image_original.resize((256, 256))
-            else: 
-                image_resized = image_original
-            
-            image = convert_totensor(image_resized)
-            
-            valid_images[c] = image
-            valid_labels[c] = label_id
-            c += 1
-            print(f"Images: {c}/{n_imgs_valid}")
-
+                        if image_original.mode == 'RGBA':
+                            try: 
+                                image_original = image_original.convert('RGB')
+                            except: 
+                                a = 1
+                        if image_original.size != (256, 256):
+                            image_resized = image_original.resize((256, 256))
+                        else: 
+                            image_resized = image_original
+                        
+                        image = convert_totensor(image_resized)
+                        
+                        valid_images[c] = image
+                        valid_labels[c] = label_id
+                        c += 1
+                        print(f"Images: {c}/{n_imgs_valid}")
+                    else:
+                        os.remove(dir+'/'+image_dir)
+                        print(f'{dir}/{image_dir} was removed')
+            except (IOError, SyntaxError) as e:
+                os.remove(dir+'/'+image_dir)
+                print(f'{dir}/{image_dir} was removed')
 
     torch.save(valid_images, output_filepath + '/valid_images.pt')
     torch.save(valid_labels, output_filepath + '/valid_labels.pt')
-
-
-
-    
-
-    
 
 
 if __name__ == '__main__':
