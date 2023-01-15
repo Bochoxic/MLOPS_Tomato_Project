@@ -1,0 +1,6 @@
+hyperparams:
+  dataset_train_path: '/data/raw/tomato-disease-multiple-sources/train'
+  dataset_valid_path: '/data/raw/tomato-disease-multiple-sources/valid'
+  batch_size: 32 #****
+  lr: 0.001 #****
+  n_epoch: 20 #****
