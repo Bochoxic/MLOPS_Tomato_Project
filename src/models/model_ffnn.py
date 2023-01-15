@@ -1,27 +1,18 @@
-import timm 
-import opendatasets as od
-import numpy as np
-import os
-import torch
-import torch.nn as nn
-import tqdm as tqdm
-import torchvision.transforms as transforms
-from torch.utils.data import DataLoader
-import torchvision
-from torch.autograd import Variable
-from torchsummary import summary
-import timm
-from torch import optim
-#import sklearn.metrics as metrics
-
+from torch import nn
 import pytorch_lightning as pl
+import torch
+import torch.nn.functional as F
+from torch import nn, optim
 
 
 class Net(pl.LightningModule):
     def __init__(self):
         super().__init__()
 
-        self.model = timm.create_model('resnet18',pretrained=True, num_classes=11)
+        self.fc1 = nn.Linear(3*150*150, 20000)
+        self.fc2 = nn.Linear(20000, 10000)
+        self.fc3 = nn.Linear(10000, 128)
+        self.fc4 = nn.Linear(128, 11)
 
         self.lr = 0.0001
         self.dropout = nn.Dropout(p=0.3)
@@ -29,7 +20,13 @@ class Net(pl.LightningModule):
         self.criterion = nn.CrossEntropyLoss()
 
     def forward(self, x):
-        return self.model(x)
+        # Check dimensions
+        x = x.view(x.shape[0], -1)
+        x = self.dropout(F.relu(self.fc1(x)))
+        x = self.dropout(F.relu(self.fc2(x)))
+        x = self.dropout(F.relu(self.fc3(x)))
+        x = F.log_softmax(self.fc4(x), dim=1)
+        return x
 
     def training_step(self, batch, batch_idx): 
         images, labels = batch
