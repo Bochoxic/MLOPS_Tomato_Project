@@ -108,10 +108,8 @@ def train_lightning(config, device):
     # Define model
     model = Net()
     # Train model
-    try: 
-        trainer.fit(model, train_dataloaders=trainloader, val_dataloaders=testloader)
-    except: 
-        a = 1
+    trainer.fit(model, train_dataloaders=trainloader, val_dataloaders=testloader)
+  
 
 # Run training
 main()
