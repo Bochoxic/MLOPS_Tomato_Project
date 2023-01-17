@@ -18,12 +18,12 @@ import pytorch_lightning as pl
 
 
 class Net(pl.LightningModule):
-    def __init__(self):
+    def __init__(self, lr):
         super().__init__()
 
         self.model = timm.create_model('resnet18',pretrained=True, num_classes=11)
 
-        self.lr = 0.0001
+        self.lr = lr
         self.dropout = nn.Dropout(p=0.3)
 
         self.criterion = nn.CrossEntropyLoss()

@@ -92,3 +92,5 @@ target/
 /outputs/
 
 /data
+
+lightning_logs/

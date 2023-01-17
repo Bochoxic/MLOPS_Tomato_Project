@@ -44,20 +44,22 @@ def train(config, device):
     hparams = config.experiment.hyperparams #load the hyperparameters. config/experiment/exp1.yaml --> hyperparams
 
     train_transformer = transforms.Compose([
-    transforms.Resize((150,150)),
+    transforms.Resize((256,256)),
     transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
     transforms.Normalize([0.5,0.5,0.5], [0.5,0.5,0.5])])
 
     test_transformer = transforms.Compose([
-        transforms.Resize((150,150)),
+        transforms.Resize((256,256)),
         transforms.ToTensor(),
         transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])])
 
-    trainloader = DataLoader(torchvision.datasets.ImageFolder(project_path + '/data/raw/tomato-disease-multiple-sources/train', transform=train_transformer),batch_size=hparams["batch_size"],shuffle=True)
-    testloader = DataLoader(torchvision.datasets.ImageFolder(project_path  + '/data/raw/tomato-disease-multiple-sources/valid', transform=test_transformer),batch_size=hparams["batch_size"],shuffle=True)
+    trainloader = DataLoader(torchvision.datasets.ImageFolder(project_path+'/data/raw/tomato-disease-multiple-sources/train',
+     transform=train_transformer),batch_size=hparams["batch_size"],shuffle=True)
+    testloader = DataLoader(torchvision.datasets.ImageFolder(project_path+'/data/raw/tomato-disease-multiple-sources/valid',
+     transform=test_transformer),batch_size=hparams["batch_size"],shuffle=True)
 
-    model = Net()
+    model = Net(hparams["lr"])
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=hparams["lr"])
@@ -87,26 +89,28 @@ def train_lightning(config, device):
 
     # Define transformations
     train_transformer = transforms.Compose([
-    transforms.Resize((150,150)),
+    transforms.Resize((256,256)),
     transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
     transforms.Normalize([0.5,0.5,0.5], [0.5,0.5,0.5])])
 
     test_transformer = transforms.Compose([
-        transforms.Resize((150,150)),
+        transforms.Resize((256,256)),
         transforms.ToTensor(),
         transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])])
 
     # Create dataloader and testloader
-    trainloader = DataLoader(torchvision.datasets.ImageFolder(project_path + '/data/raw/tomato-disease-multiple-sources/train', transform=train_transformer),batch_size=hparams["batch_size"],shuffle=True)
-    testloader = DataLoader(torchvision.datasets.ImageFolder(project_path  + '/data/raw/tomato-disease-multiple-sources/valid', transform=test_transformer),batch_size=hparams["batch_size"],shuffle=True)
+    trainloader = DataLoader(torchvision.datasets.ImageFolder(project_path+'/data/raw/tomato-disease-multiple-sources/train',
+     transform=train_transformer),batch_size=hparams["batch_size"],shuffle=True)
+    testloader = DataLoader(torchvision.datasets.ImageFolder(project_path+'/data/raw/tomato-disease-multiple-sources/valid',
+     transform=test_transformer),batch_size=hparams["batch_size"],shuffle=True)
  
     # Define early stopping callback: Stop training if validation loss doesn't improve during "patience" epochs 
     early_stopping_callback = EarlyStopping(monitor="val_loss", patience=3, verbose=True, mode="min")
     # Create trainer
-    trainer = pl.Trainer(max_epochs=10, limit_train_batches=0.05, callbacks=[early_stopping_callback], accelerator='gpu')
+    trainer = pl.Trainer(max_epochs=hparams["n_epoch"], limit_train_batches=hparams["limit_batches"], callbacks=[early_stopping_callback], accelerator='gpu')
     # Define model
-    model = Net()
+    model = Net(hparams["lr"])
     # Train model
     trainer.fit(model, train_dataloaders=trainloader, val_dataloaders=testloader)
   
