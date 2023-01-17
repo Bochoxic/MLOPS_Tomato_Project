@@ -77,7 +77,7 @@ def main(input_filepath, output_filepath):
                 print(f'{dir}/{image_dir} was removed')
 
     # Save train images and train labels
-    torch.save(torch.cat(train_images), output_filepath + '/train_images.pt')
+    torch.save(torch.stack(train_images), output_filepath + '/train_images.pt')
     torch.save(torch.tensor(train_labels), output_filepath + '/train_labels.pt')
 
     valid_images = []
@@ -119,7 +119,7 @@ def main(input_filepath, output_filepath):
                 os.remove(dir+'/'+image_dir)
                 print(f'{dir}/{image_dir} was removed')
 
-    torch.save(torch.cat(valid_images), output_filepath + '/valid_images.pt')
+    torch.save(torch.stack(valid_images), output_filepath + '/valid_images.pt')
     torch.save(torch.tensor(valid_labels), output_filepath + '/valid_labels.pt')
 
 
