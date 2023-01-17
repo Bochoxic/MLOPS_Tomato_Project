@@ -22,8 +22,8 @@ class tomatoDataset(Dataset):
         
     def _load_data(self): 
         project_dir = os.getcwd()
-        images_dir =  project_dir+"/"+self.data_dir+"/"+self.data_type+"_images.pt"
-        labels_dir =  project_dir+"/"+self.data_dir+"/"+self.data_type+"_labels.pt"
+        images_dir =  self.data_dir+"/"+self.data_type+"_images.pt"
+        labels_dir =  self.data_dir+"/"+self.data_type+"_labels.pt"
         images = torch.load(images_dir)
         labels = torch.load(labels_dir)
 
