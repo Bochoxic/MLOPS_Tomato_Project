@@ -12,7 +12,8 @@ from torch.autograd import Variable
 from torchsummary import summary
 import timm
 from torch import optim
-from model_ffnn import Net
+from model_ffnn import Net_ffnn
+from model import Net
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning.loggers import WandbLogger
@@ -35,14 +36,14 @@ def main(config):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f'Using torch device of type {device.type}{": " + torch.cuda.get_device_name(device) if device.type == "cuda" else ""}')
     print("Start Training...")
-
+    model_type = config.experiment.model
     # Select between normal or lightning training (config/experiment/exp1/training: lightning or normal)
     if config.experiment.training == 'lightning': 
-        train_lightning(config, device)
+        train_lightning(config, model_type)
     else:    
-        train(config, device)
+        train(config, device, model_type)
 
-def train(config, device):
+def train(config, device, model_type):
     
     hparams = config.experiment.hyperparams #load the hyperparameters. config/experiment/exp1.yaml --> hyperparams
 
@@ -62,7 +63,11 @@ def train(config, device):
     testloader = DataLoader(torchvision.datasets.ImageFolder(project_path+'/data/raw/tomato-disease-multiple-sources/valid',
      transform=test_transformer),batch_size=hparams["batch_size"],shuffle=True)
 
-    model = Net(hparams["lr"])
+    if model_type == "fast":
+        model = Net_ffnn(hparams["lr"])
+    elif model_type == "precise":
+        model = Net(hparams["lr"])
+
     wandb.watch(model, log_freq=100)
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
@@ -86,9 +91,11 @@ def train(config, device):
 
         print(f"Epoch {epoch+1} /{hparams['n_epoch']}. Loss: {loss}")
         wandb.log({"loss": loss})
+        
+    torch.save(model.state_dict(), "models/trained_model.pt")
 
 
-def train_lightning(config, device):
+def train_lightning(config, model_type):
     # Load hyperparameters from hydra
     hparams = config.experiment.hyperparams #load the hyperparameters. config/experiment/exp1.yaml --> hyperparams
 
@@ -115,9 +122,14 @@ def train_lightning(config, device):
     # Create trainer
     wandb.finish()
     wandb_logger = WandbLogger()
-    trainer = pl.Trainer(max_epochs=hparams["n_epoch"], limit_train_batches=hparams["limit_batches"], callbacks=[early_stopping_callback], accelerator='gpu', logger=wandb_logger)
+    trainer = pl.Trainer(max_epochs=hparams["n_epoch"], limit_train_batches=hparams["limit_batches"], callbacks=[early_stopping_callback], accelerator='auto', logger=wandb_logger)
     # Define model
-    model = Net(hparams["lr"])
+
+    if model_type == "fast":
+        model = Net_ffnn(hparams["lr"])
+    elif model_type == "precise":
+        model = Net(hparams["lr"])
+        
     wandb.watch(model, log_freq=100)
     # Train model
     trainer.fit(model, train_dataloaders=trainloader, val_dataloaders=testloader)
