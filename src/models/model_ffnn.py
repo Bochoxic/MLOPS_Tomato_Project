@@ -6,15 +6,15 @@ from torch import nn, optim
 
 
 class Net(pl.LightningModule):
-    def __init__(self):
+    def __init__(self, lr):
         super().__init__()
 
-        self.fc1 = nn.Linear(3*150*150, 20000)
-        self.fc2 = nn.Linear(20000, 10000)
-        self.fc3 = nn.Linear(10000, 128)
+        self.fc1 = nn.Linear(3*10*10, 128)
+        # self.fc2 = nn.Linear(20000, 10000)
+        # self.fc3 = nn.Linear(10000, 128)
         self.fc4 = nn.Linear(128, 11)
 
-        self.lr = 0.0001
+        self.lr = lr
         self.dropout = nn.Dropout(p=0.3)
 
         self.criterion = nn.CrossEntropyLoss()
@@ -23,8 +23,8 @@ class Net(pl.LightningModule):
         # Check dimensions
         x = x.view(x.shape[0], -1)
         x = self.dropout(F.relu(self.fc1(x)))
-        x = self.dropout(F.relu(self.fc2(x)))
-        x = self.dropout(F.relu(self.fc3(x)))
+        # x = self.dropout(F.relu(self.fc2(x)))
+        # x = self.dropout(F.relu(self.fc3(x)))
         x = F.log_softmax(self.fc4(x), dim=1)
         return x
 
