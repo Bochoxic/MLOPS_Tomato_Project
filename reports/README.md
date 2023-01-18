@@ -199,19 +199,17 @@ A new member should clone the github project repository and execute the followin
 > *experiments.*
 > 
 > Answer:
-> cookie-cutter is standardized way of creating project structures, making one able to faster get understand the other persons code. It just a template and maybe not all parts of it are important for our project.
-From the cookiecutter template we have filled out the 'src' folder.
-      - src: here we have filled out the following folders: 
-            -'data' where is the code to download and make the datasets for our model.
-            - 'models' where is the code to create the network, train and predict.
+> cookie-cutter is standardized way of creating project structures, making one able to faster get understand the other persons code. It just a template and maybe not all parts of it are important for our project. From the cookiecutter template we have filled out the 'src' folder:
+- src: here we have filled out the following folders: 
+      -'data' where is the code to download and make the datasets for our model. 
+      - 'models' where is the code to create the network, train and predict.
+> We have added the following folders for running our experiments: 
+- ./dvc: contains a pointer to your remote storage 
+- .github: .github/workflows/ contains different workflows
+- config: contains config files to keep track of hyperparameters
+- reports: contains the project description and exam
+-tests: contains the unit testing to tests individual parts of your code base.
 
-We have added the following folders for running our experiments:
-      - ./dvc: contains a pointer to your remote storage
-      - .github:
-      - config:
-      - reports:
-      - src:
-      - tests:
  
 
 
