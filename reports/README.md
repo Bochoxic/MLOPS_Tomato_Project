@@ -144,11 +144,7 @@ end of the project.
 
 ### Question 2
 > **Enter the study number for each member in the group**
->
-> Example:
->
-> *sXXXXXX, sXXXXXX, sXXXXXX*
->
+
 > Answer:
 
 --- s222928, s221924, s222929 ---
