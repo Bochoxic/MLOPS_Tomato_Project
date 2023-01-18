@@ -151,7 +151,7 @@ end of the project.
 >
 > Answer:
 
---- sXXXXXX, s221924, sXXXXXX ---
+--- s222928, s221924, s222929 ---
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -164,7 +164,10 @@ end of the project.
 >
 > Answer:
 
---- question 3 fill here ---
+--- We are using the PyTorch Image Models framework, because our project is about the classification of tomato diseases from tomato leaves images
+Among all the models offered by this framework, we have decided to choose 'resnet' as it is intended for image classification.
+In addition, when loading the model, this framework allows us to select a pre-trained model from which to start as a basis for better training.
+After training the pre-trained model with our images, an optimal classification was obtained.---
 
 ## Coding environment
 
@@ -183,7 +186,9 @@ end of the project.
 >
 > Answer:
 
---- question 4 fill here ---
+--- We used conda to create a virtual environment to avoid dependencies version issue between different projects. However, we have used pip to install the dependencies in the conda environment. 
+The list of dependencies was auto-generated using the package 'pipreqs', that automatically scan your project and create a requirement file with all the packages that you import in your code. Every time we want to update the requirement file we have to run the following comand: pipreq --force . 'force' argument is to overwrite the old file.
+A new member should clone the github project repository and execute the following command: pip install -r requirements.txt. With that command, all the dependencies generated previously are installed.---
 
 ### Question 5
 
