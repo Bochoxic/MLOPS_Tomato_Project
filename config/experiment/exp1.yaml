@@ -4,4 +4,5 @@ hyperparams:
   lr: 0.001 #****
   n_epoch: 2 #****
   limit_batches: 0.05
+model: fast # fast or precise
 

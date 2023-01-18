@@ -5,7 +5,7 @@ import torch.nn.functional as F
 from torch import nn, optim
 
 
-class Net(pl.LightningModule):
+class Net_ffnn(pl.LightningModule):
     def __init__(self, lr):
         super().__init__()
 
