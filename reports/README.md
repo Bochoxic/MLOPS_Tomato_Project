@@ -197,7 +197,23 @@ A new member should clone the github project repository and execute the followin
 > *From the cookiecutter template we have filled out the ... , ... and ... folder. We have removed the ... folder*
 > *because we did not use any ... in our project. We have added an ... folder that contains ... for running our*
 > *experiments.*
+> 
 > Answer:
+> cookie-cutter is standardized way of creating project structures, making one able to faster get understand the other persons code. It just a template and maybe not all parts of it are important for our project.
+From the cookiecutter template we have filled out the 'src' folder.
+      - src: here we have filled out the following folders: 
+            -'data' where is the code to download and make the datasets for our model.
+            - 'models' where is the code to create the network, train and predict.
+
+We have added the following folders for running our experiments:
+      - ./dvc: contains a pointer to your remote storage
+      - .github:
+      - config:
+      - reports:
+      - src:
+      - tests:
+ 
+
 
 --- question 5 fill here ---
 
