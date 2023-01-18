@@ -2,6 +2,6 @@ training: lightning # lightning or normal
 hyperparams:
   batch_size: 32 #****
   lr: 0.001 #****
-  n_epoch: 20 #****
+  n_epoch: 2 #****
   limit_batches: 0.05
 

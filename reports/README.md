@@ -92,9 +92,9 @@ end of the project.
 * [x] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
 * [x] Add a model file and a training script and get that running
 * [x] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
-* [ ] Remember to comply with good coding practices (`pep8`) while doing the project
+* [x] Remember to comply with good coding practices (`pep8`) while doing the project
 * [ ] Do a bit of code typing and remember to document essential parts of your code
-* [ ] Setup version control for your data or part of your data
+* [x] Setup version control for your data or part of your data
 * [ ] Construct one or multiple docker files for your code
 * [ ] Build the docker files locally and make sure they work as intended
 * [x] Write one or multiple configurations files for your experiments
@@ -144,14 +144,10 @@ end of the project.
 
 ### Question 2
 > **Enter the study number for each member in the group**
->
-> Example:
->
-> *sXXXXXX, sXXXXXX, sXXXXXX*
->
+
 > Answer:
 
---- sXXXXXX, s221924, sXXXXXX ---
+--- s222928, s221924, s222929 ---
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -164,7 +160,10 @@ end of the project.
 >
 > Answer:
 
---- question 3 fill here ---
+--- We are using the PyTorch Image Models framework, because our project is about the classification of tomato diseases from tomato leaves images
+Among all the models offered by this framework, we have decided to choose 'resnet' as it is intended for image classification.
+In addition, when loading the model, this framework allows us to select a pre-trained model from which to start as a basis for better training.
+After training the pre-trained model with our images, an optimal classification was obtained.---
 
 ## Coding environment
 
@@ -183,7 +182,9 @@ end of the project.
 >
 > Answer:
 
---- question 4 fill here ---
+--- We used conda to create a virtual environment to avoid dependencies version issue between different projects. However, we have used pip to install the dependencies in the conda environment. 
+The list of dependencies was auto-generated using the package 'pipreqs', that automatically scan your project and create a requirement file with all the packages that you import in your code. Every time we want to update the requirement file we have to run the following comand: pipreq --force . 'force' argument is to overwrite the old file.
+A new member should clone the github project repository and execute the following command: pip install -r requirements.txt. With that command, all the dependencies generated previously are installed.---
 
 ### Question 5
 
@@ -196,7 +197,21 @@ end of the project.
 > *From the cookiecutter template we have filled out the ... , ... and ... folder. We have removed the ... folder*
 > *because we did not use any ... in our project. We have added an ... folder that contains ... for running our*
 > *experiments.*
+> 
 > Answer:
+> cookie-cutter is standardized way of creating project structures, making one able to faster get understand the other persons code. It just a template and maybe not all parts of it are important for our project. From the cookiecutter template we have filled out the 'src' folder:
+- src: here we have filled out the following folders: 
+      -'data' where is the code to download and make the datasets for our model. 
+      - 'models' where is the code to create the network, train and predict.
+> We have added the following folders for running our experiments: 
+- ./dvc: contains a pointer to your remote storage 
+- .github: .github/workflows/ contains different workflows
+- config: contains config files to keep track of hyperparameters
+- reports: contains the project description and exam
+-tests: contains the unit testing to tests individual parts of your code base.
+
+ 
+
 
 --- question 5 fill here ---
 

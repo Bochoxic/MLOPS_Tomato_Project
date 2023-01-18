@@ -2,6 +2,7 @@ import opendatasets as od
 import numpy as np
 import os
 import torch
+import wandb
 import torch.nn as nn
 import tqdm as tqdm
 import torchvision.transforms as transforms
@@ -11,9 +12,10 @@ from torch.autograd import Variable
 from torchsummary import summary
 import timm
 from torch import optim
-from model import Net
+from model_ffnn import Net
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
+from pytorch_lightning.loggers import WandbLogger
 import logging
 import hydra
 from omegaconf import DictConfig, OmegaConf
@@ -29,6 +31,7 @@ project_path=os.getcwd() #so hydra doesn't change the path
 @hydra.main(config_path="../../config", config_name='default_config.yaml') #config/default_config.yaml
 def main(config): 
     # Use cuda if available
+    wandb.init(project="Tomato Project")
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f'Using torch device of type {device.type}{": " + torch.cuda.get_device_name(device) if device.type == "cuda" else ""}')
     print("Start Training...")
@@ -60,6 +63,7 @@ def train(config, device):
      transform=test_transformer),batch_size=hparams["batch_size"],shuffle=True)
 
     model = Net(hparams["lr"])
+    wandb.watch(model, log_freq=100)
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=hparams["lr"])
@@ -81,6 +85,7 @@ def train(config, device):
         
 
         print(f"Epoch {epoch+1} /{hparams['n_epoch']}. Loss: {loss}")
+        wandb.log({"loss": loss})
 
 
 def train_lightning(config, device):
@@ -89,13 +94,13 @@ def train_lightning(config, device):
 
     # Define transformations
     train_transformer = transforms.Compose([
-    transforms.Resize((256,256)),
+    transforms.Resize((10,10)),
     transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
     transforms.Normalize([0.5,0.5,0.5], [0.5,0.5,0.5])])
 
     test_transformer = transforms.Compose([
-        transforms.Resize((256,256)),
+        transforms.Resize((10,10)),
         transforms.ToTensor(),
         transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])])
 
@@ -108,11 +113,15 @@ def train_lightning(config, device):
     # Define early stopping callback: Stop training if validation loss doesn't improve during "patience" epochs 
     early_stopping_callback = EarlyStopping(monitor="val_loss", patience=3, verbose=True, mode="min")
     # Create trainer
-    trainer = pl.Trainer(max_epochs=hparams["n_epoch"], limit_train_batches=hparams["limit_batches"], callbacks=[early_stopping_callback], accelerator='gpu')
+    wandb.finish()
+    wandb_logger = WandbLogger()
+    trainer = pl.Trainer(max_epochs=hparams["n_epoch"], limit_train_batches=hparams["limit_batches"], callbacks=[early_stopping_callback], accelerator='gpu', logger=wandb_logger)
     # Define model
     model = Net(hparams["lr"])
+    wandb.watch(model, log_freq=100)
     # Train model
     trainer.fit(model, train_dataloaders=trainloader, val_dataloaders=testloader)
+    wandb.finish()
   
 
 # Run training
