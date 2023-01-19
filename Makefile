@@ -8,7 +8,7 @@ PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
 PROFILE = default
 PROJECT_NAME = MLOPS_Tomato_Project
-PYTHON_INTERPRETER = python3
+PYTHON_INTERPRETER = python
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -27,13 +27,15 @@ requirements: test_environment
 
 ## Make Dataset
 download_data: requirements
-	$(PYTHON_INTERPRETER) src/data/download_data.py
-
-clean_data: 
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py
+	dvc pull
 
 train: 
 	$(PYTHON_INTERPRETER) src/models/train_model.py
+
+train_with_sweep:
+
+	
+
 
 
 ## Delete all compiled Python files

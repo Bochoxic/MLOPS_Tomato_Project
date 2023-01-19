@@ -1,8 +1,12 @@
 training: lightning # lightning or normal
+model: precise # fast or precise
+patience: 10 # Times that the training is repeated without improving the val_acc
+image_size_x: 256
+image_size_y: 256
 hyperparams:
   batch_size: 32 #****
-  lr: 0.001 #****
-  n_epoch: 2 #****
-  limit_batches: 0.05
-model: fast # fast or precise
+  lr: 0.00005 #****
+  n_epoch: 3   #****
+  limit_batches: 1 
+
 

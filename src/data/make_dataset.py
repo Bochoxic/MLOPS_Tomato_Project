@@ -68,7 +68,8 @@ def main(input_filepath, output_filepath):
                         train_images.append(image)
                         train_labels.append(label_id)
                         c += 1
-                        print(f"Images: {c}/{n_imgs_train}")
+                        if (c % 1000 == 0):
+                            print(f"Images: {c}/{n_imgs_train}")
                     else:
                         os.remove(dir+'/'+image_dir)
                         print(f'{dir}/{image_dir} was removed')
@@ -102,7 +103,8 @@ def main(input_filepath, output_filepath):
                         
                         image = convert_totensor(image_resized)
                         c += 1
-                        print(f"Images: {c}/{n_imgs_valid}")
+                        if (c % 1000 == 0):
+                            print(f"Images: {c}/{n_imgs_valid}")
                     else:
                         os.remove(dir+'/'+image_dir)
                         print(f'{dir}/{image_dir} was removed')

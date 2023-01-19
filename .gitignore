@@ -94,3 +94,6 @@ target/
 /data
 
 lightning_logs/
+
+/models
+/wandb
