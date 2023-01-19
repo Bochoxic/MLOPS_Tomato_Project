@@ -7,7 +7,6 @@ import pytest
 import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
-from tomatoDataset import tomatoDataset
 import torchvision
 
 
