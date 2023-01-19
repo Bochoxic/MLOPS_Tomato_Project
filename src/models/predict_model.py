@@ -11,7 +11,7 @@ def predict(model_checkpoint, image_path):
     # Load model from checkpoint
     model = Net(lr=0.0001)
     model.eval()
-    model.load_from_checkpoint(model_checkpoint,lr=0.0001)
+    model.load_state_dict(torch.load(model_checkpoint))
 
     # Open image
     image = cv2.imread(image_path)
@@ -30,4 +30,4 @@ def predict(model_checkpoint, image_path):
     probability = top_p.item()*100
     return probability, label
 
-predict('models/lightning/epoch=107-step=108.ckpt', 'prueba.jpg')
+predict('models/model.pkl', 'prueba.jpg')
