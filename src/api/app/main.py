@@ -7,6 +7,8 @@ from fastapi import UploadFile, File
 from typing import Optional
 from torchvision.transforms import transforms
 from predict_model import predict
+import uvicorn
+import os
 
 app = FastAPI()
 
@@ -21,8 +23,7 @@ def root():
 
 
 @app.post("/predict/")
-async def cv_model(data: UploadFile = File(...), h: Optional[int] = 28, w: Optional[int] = 28):
-    totensor = transforms.ToTensor()
+async def cv_model(data: UploadFile = File(...)):
     with open('image.jpg', 'wb') as image:
         content = await data.read()
         image.write(content)
@@ -33,5 +34,6 @@ async def cv_model(data: UploadFile = File(...), h: Optional[int] = 28, w: Optio
     return {'Label': label, 'Probability': prob}
 
 
+uvicorn.run(app, port=int(os.environ.get("PORT", 8000)), host="0.0.0.0")
 
 
