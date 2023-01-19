@@ -95,4 +95,6 @@ target/
 
 lightning_logs/
 
-models/
+/models
+/wandb
+
