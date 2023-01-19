@@ -93,15 +93,15 @@ end of the project.
 * [x] Add a model file and a training script and get that running
 * [x] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
 * [x] Remember to comply with good coding practices (`pep8`) while doing the project
-* [ ] Do a bit of code typing and remember to document essential parts of your code
+* [x] Do a bit of code typing and remember to document essential parts of your code
 * [x] Setup version control for your data or part of your data
-* [ ] Construct one or multiple docker files for your code
-* [ ] Build the docker files locally and make sure they work as intended
+* [x] Construct one or multiple docker files for your code
+* [x] Build the docker files locally and make sure they work as intended
 * [x] Write one or multiple configurations files for your experiments
 * [x] Used Hydra to load the configurations and manage your hyperparameters
 * [ ] When you have something that works somewhat, remember at some point to to some profiling and see if
       you can optimize your code
-* [ ] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
+* [x] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
       consider running a hyperparameter optimization sweep.
 * [x] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
@@ -109,7 +109,7 @@ end of the project.
 
 * [x] Write unit tests related to the data part of your code
 * [x] Write unit tests related to model construction and or model training
-* [ ] Calculate the coverage.
+* [x] Calculate the coverage.
 * [x] Get some continuous integration running on the github repository
 * [x] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
 * [x] Create a trigger workflow for automatically building your docker images
@@ -129,9 +129,9 @@ end of the project.
 
 ### Additional
 
-* [ ] Revisit your initial project description. Did the project turn out as you wanted?
-* [ ] Make sure all group members have a understanding about all parts of the project
-* [ ] Uploaded all your code to github
+* [x] Revisit your initial project description. Did the project turn out as you wanted?
+* [x] Make sure all group members have a understanding about all parts of the project
+* [x] Uploaded all your code to github
 
 ## Group information
 
@@ -171,11 +171,6 @@ After training the pre-trained model with our images, an optimal classification 
 > **through to get an exact copy of your environment.**
 >
 > Answer length: 100-200 words
->
-> Example:
-> *We used ... for managing our dependencies. The list of dependencies was auto-generated using ... . To get a*
-> *complete copy of our development enviroment, one would have to run the following commands*
->
 > Answer:
 
 --- We used conda to create a virtual environment to avoid dependencies version issue between different projects. However, we have used pip to install the dependencies in the conda environment. 
@@ -197,7 +192,6 @@ A new member should clone the github project repository and execute the followin
 > Answer:
 cookie-cutter is standardized way of creating project structures, making one able to faster get understand the other persons code. It just a template and maybe not all parts of it are important for our project. From the cookiecutter template we have filled out the 'src' folder:
 - src: here we have filled out the following folders: 
-      
       -'data' where is the code to download and make the datasets for our model. 
       - 'models' where is the code to create the network, train and predict.
 We have added the following folders for running our experiments: 
@@ -205,7 +199,7 @@ We have added the following folders for running our experiments:
 - .github: .github/workflows/ contains different workflows
 - config: contains config files to keep track of hyperparameters
 - reports: contains the project description and exam
--tests: contains the unit testing to tests individual parts of your code base.
+- tests: contains the unit testing to tests individual parts of your code base.
 
 
 ### Question 6
@@ -219,7 +213,7 @@ We have added the following folders for running our experiments:
 
 A part from the structure, to maintain the quality and format of the code we have implemented:
 -     Documentation: to remember all details about the code.
--	Styling: we used flake8 to check if our code is pep8 (the official style guide for python). Important when working multiple people together who have different coding styles. We also have taken care of the import statements, applying the isort standard.
+-	Styling: we used flake8 to check if our code is pep8 (the official style guide for python). Important when working multiple people together who have different       coding styles. We also have taken care of the import statements, applying the isort standard.
 -	Typing: specify data types for variables. You can know the expected types of input arguments and returns by just reading the code.
 
 
@@ -234,9 +228,6 @@ A part from the structure, to maintain the quality and format of the code we hav
 >
 > Answer length: 50-100 words.
 >
-> Example:
-> *In total we have implemented X tests. Primarily we are testing ... and ... as these the most critical parts of our*
-> *application but also ... .*
 >
 > Answer:
 
@@ -259,7 +250,7 @@ In total we have implemented 3 tests, where we test our data, the model and the 
 >
 > Answer:
 
---- question 8 fill here ---
+--- Despite the fact our code had 100% coverage we couldn`t trust it to be error free. This is due to possible errors in the test codes in which we hadn't taken inot account some tests to be passed. So, it is more related with the quality of the tests than to the coverage of these ones. ---
 
 ### Question 9
 
@@ -274,7 +265,7 @@ In total we have implemented 3 tests, where we test our data, the model and the 
 >
 > Answer:
 
---- question 9 fill here ---
+--- We made use of both brances and PRs in our project. We have created brances for each of the features that we were developing, and when the feature was working correctly a pull request was done to be able to merge the branch with main. Once the pull request was done the code had to pass the tests explained before to pass de pull request succesfully. ---
 
 ### Question 10
 
@@ -307,7 +298,7 @@ Having a version control of our data has helped us in the development of our pro
 >
 > Answer:
 
-We have made use of: Unittesting, Github actions and Lightning.
+We have made use of: unittesting through Github actions.
 -	Unittesting. Test that tests individual parts of the code base to test for correctness. We created the folder ‘tests’, where we have implemented three different tests:
       o     tets_data.py: checks that the shape of each image is [batch_size, 3, 256, 256] and the labels size should be like the batch size. Also checks if the data is present at /data.
       o     test_model.py: checks that the output size, after applying the model, is correct ([batch_size, 11]). 
@@ -317,9 +308,9 @@ We store our different workflows at the folder .github/workflows:
       o	tests.yml: run the tests for us
       o	isort.yml: runs isort on the repository
       o	flake8.yml: runs flake8 on the repository
--	Pytorch Lightning. Adding the LightningModule to the first approach of our model.py, and two new methods needed: ‘training_step’ and ‘configure_optimizers’
                                                                                                                                     
-We don't make use of caching.                                                                                                        **EXAMPLE OF A TRIGGERED WORKFLOW --> FALTA**
+We don't make use of caching.
+Link to the github actions: https://github.com/Bochoxic/MLOPS_Tomato_Project/actions
  ---
 
 ## Running code and tracking experiments
@@ -333,12 +324,9 @@ We don't make use of caching.                                                   
 > **run a experiment.**
 >
 > Answer length: 50-100 words.
->
-> Example:
-> *We used a simple argparser, that worked in the following way: python my_script.py --lr 1e-3 --batch_size 25*
->
-> Answer:
 
+> Answer:
+---
 We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
 `|--config
 |  |--default_config.yaml
@@ -348,7 +336,7 @@ We use Hydra, a tool to write config file to keep track of hyperparameters, with
 ‘default_config.yaml’ points to the experiment that we want to run. That experiment is contained in the folder ‘experiment’ with the hyperparameters needed to run the script (‘batch_size’, ‘lr’, ‘n_epoch’, ‘limit_batches’ and if we want to run the training with the lightning api or without it) and a value.
 We load the configuration file inside our script using hydra, and to run our training calling the train_model.py from the terminal:
                                 `python src/models/train_model.py`
-            
+            ---
             
 ### Question 13
 
@@ -369,7 +357,7 @@ Whenever an experiment is run the following happens:
 -	load the configuration file inside your script (using hydra) that incorporates the hyperparameters into the script
 -	Run the script
 -	By default hydra will write the results to a ‘outputs’ folder
-To reproduce an experiment one would have to choose the .yaml file of the experiment wanted and run the script providing that configuration file as an argument. In our case, right now, we just have one experiment (‘exp1.yaml), so we run the training script without argument: `python src/models/train_model.py`
+To reproduce an experiment one would have to choose the .yaml file of the experiment wanted and select it in the config_default.yaml, which is the high-level configuration file. So, the following command should be use to reproduce the experiment once the config file have been set up: `python src/models/train_model.py`
 
 
 ### Question 14
@@ -402,7 +390,7 @@ To reproduce an experiment one would have to choose the .yaml file of the experi
 >
 > Answer:
 
---- question 15 fill here ---
+--- For our project we have developed several images: one for training, inference and deployment.  ---
 
 ### Question 16
 
@@ -416,12 +404,12 @@ To reproduce an experiment one would have to choose the .yaml file of the experi
 > *run of our main code at some point that showed ...*
 >
 > Answer:
-
+---
 We run the different scripts in VS, so when running into bugs we inserted inline breakpoints in the code and then execute the script in debug mode. 
 The code runs until the breakpoint, and after that we can run the rest of the code line by line, so we can see at which point of the code the model is failing and we can also see the value of the different variables using the debug console.
                                           
-                                          **PROFILE?**
-
+We have not had time to profile the code because it was not a priority task. However, we have performed profiling during lecture exercises. It is a very useful tool that allow us to know how many time it takes to run the code and where are bottlenecks.  
+---
 
 ## Working in the cloud
 
@@ -437,12 +425,12 @@ The code runs until the breakpoint, and after that we can run the rest of the co
 > *We used the following two services: Engine and Bucket. Engine is used for... and Bucket is used for...*
 >
 > Answer:
-
+---
 We used the following services:
--	Compute Engine: to create and run a virtual machine, which has allowed us to essentially run an operating system that behaves like a completely separate computer. After creating an appropriate VM we log into it and run our code in that machine. **COMENTAR CARACTERÍSTICAS ETC**
--	Cloud storage: to store the data in the cloud to make it easier to share, expand and not to lose it.
--	Container registry: **COMPLETAR**
-
+-	Compute Engine: to create and run a virtual machine, which has allowed us to essentially run an operating system that behaves like a completely separate computer. After creating an appropriate VM we log into it and run our code in that machine. We have been able to use GPU instance with which the model training has been faster, leting us to develop better models. 
+-	Cloud storage: to store the data in the cloud to make it easier to share, expand and not to lose it. We have created a bucket to save the images using dvc, b       being able to pull them whenever we wanted. 
+-	Container registry: It is where docker images are saved. 
+---
 
 ### Question 18
 
@@ -456,8 +444,7 @@ We used the following services:
 > *using a custom container: ...*
 >
 > Answer:
-
---- question 18 fill here ---
+--- Compute Engine allow us to create virtual machines (instances) in which we can set up the environment needed to run our experiments. The main advantage is the hardware available, being this much better than the ones we can have in our local machines. We are using an Nvidia V100 which improves our training speed, achieving sweep hyperparameters tunning.  ---
 
 ### Question 19
 
@@ -500,7 +487,10 @@ We used the following services:
 >
 > Answer:
 
---- question 22 fill here ---
+--- Deployment is very important in production stages to let people execute code without looking at it. 
+To be able to deploy the model, firs of all has been needed to develop an api. This api allow the users to interact with the application. For the development of the api, the package Fastapi has been used. The api consist of a function that receive an image which is passed to the model predictor. This predictor loads a model that has been trained previously. Finally, the output of the api is the  prediction of the model and the probability of being that class.  
+After having developed the api locally, we have built a docker container. This container has been pushed to the container registry in GCP. Once the container pushed, we have been able to develop a service which executes the container when a request is received. 
+Finally, executing the following link: https://api-service-x2zysz7rqa-ey.a.run.app and going to /docs, the predict function can be executed which need an image of a tomato leaf to predict if it has any issue. ---
 
 ### Question 23
 
