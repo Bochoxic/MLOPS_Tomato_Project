@@ -140,7 +140,7 @@ end of the project.
 >
 > Answer:
 
-45
+--- 45 ---
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -156,10 +156,10 @@ s222928, s221924, s222929
 >
 > Answer:
 
-We are using the PyTorch Image Models framework, because our project is about the classification of tomato diseases from tomato leaves images
+--- We are using the PyTorch Image Models framework, because our project is about the classification of tomato diseases from tomato leaves images
 Among all the models offered by this framework, we have decided to choose 'resnet' as it is intended for image classification.
 In addition, when loading the model, this framework allows us to select a pre-trained model from which to start as a basis for better training.
-After training the pre-trained model with our images, an optimal classification was obtained.
+After training the pre-trained model with our images, an optimal classification was obtained. ---
 
 ## Coding environment
 
@@ -180,7 +180,7 @@ After training the pre-trained model with our images, an optimal classification 
 
 --- We used conda to create a virtual environment to avoid dependencies version issue between different projects. However, we have used pip to install the dependencies in the conda environment. 
 The list of dependencies was auto-generated using the package 'pipreqs', that automatically scan your project and create a requirement file with all the packages that you import in your code. Every time we want to update the requirement file we have to run the following comand: pipreq --force . 'force' argument is to overwrite the old file.
-A new member should clone the github project repository and execute the following command: pip install -r requirements.txt. With that command, all the dependencies generated previously are installed.---
+A new member should clone the github project repository and execute the following command: pip install -r requirements.txt. With that command, all the dependencies generated previously are installed. ---
 
 ### Question 5
 
@@ -195,7 +195,7 @@ A new member should clone the github project repository and execute the followin
 > *experiments.*
 > 
 > Answer:
-cookie-cutter is standardized way of creating project structures, making one able to faster get understand the other persons code. It just a template and maybe not all parts of it are important for our project. From the cookiecutter template we have filled out the 'src' folder:
+--- cookie-cutter is standardized way of creating project structures, making one able to faster get understand the other persons code. It just a template and maybe not all parts of it are important for our project. From the cookiecutter template we have filled out the 'src' folder:
 - src: here we have filled out the following folders: 
       
       -'data' where is the code to download and make the datasets for our model. 
@@ -205,7 +205,7 @@ We have added the following folders for running our experiments:
 - .github: .github/workflows/ contains different workflows
 - config: contains config files to keep track of hyperparameters
 - reports: contains the project description and exam
--tests: contains the unit testing to tests individual parts of your code base.
+-tests: contains the unit testing to tests individual parts of your code base. ---
 
 
 ### Question 6
@@ -217,10 +217,10 @@ We have added the following folders for running our experiments:
 >
 > Answer:
 
-A part from the structure, to maintain the quality and format of the code we have implemented:
+--- A part from the structure, to maintain the quality and format of the code we have implemented:
 -     Documentation: to remember all details about the code.
 -	Styling: we used flake8 to check if our code is pep8 (the official style guide for python). Important when working multiple people together who have different coding styles. We also have taken care of the import statements, applying the isort standard.
--	Typing: specify data types for variables. You can know the expected types of input arguments and returns by just reading the code.
+-	Typing: specify data types for variables. You can know the expected types of input arguments and returns by just reading the code. ---
 
 
 ## Version control
@@ -240,10 +240,10 @@ A part from the structure, to maintain the quality and format of the code we hav
 >
 > Answer:
 
-In total we have implemented 3 tests, where we test our data, the model and the training process.
+--- In total we have implemented 3 tests, where we test our data, the model and the training process.
 -test_data: checks for both the test data and the test train, that the shape of each image is [batch_size, 3, 256, 256] and the labels size should be like the batch size
 -test_model: applies the model to an input, and checks that the output size is correct ([batch_size, 11])
--test_training: trains the model and checks that: the training loss is >=0, validation loss is >=0 and validation accuracy is <=1
+-test_training: trains the model and checks that: the training loss is >=0, validation loss is >=0 and validation accuracy is <=1 ---
 
 
 ### Question 8
@@ -289,9 +289,9 @@ In total we have implemented 3 tests, where we test our data, the model and the 
 >
 > Answer:
 
-We did make use of DVC in the following way: Firstly, we made dvc work together with our own Google drive to storage data. However, a big limitation of this is that we need to authentic each time we try to either push or pull the data. Therefore, we need to use an API instead which is offered through gcp. So, we created a bucket through the GCP page and after that, we changed the storage from our Google drive to this new Google cloud storage and pushed the data to the cloud.
+--- We did make use of DVC in the following way: Firstly, we made dvc work together with our own Google drive to storage data. However, a big limitation of this is that we need to authentic each time we try to either push or pull the data. Therefore, we need to use an API instead which is offered through gcp. So, we created a bucket through the GCP page and after that, we changed the storage from our Google drive to this new Google cloud storage and pushed the data to the cloud.
 
-Having a version control of our data has helped us in the development of our project in several weeks: has made it easy to understand how the data has evolved; has allow the three members of the team to work on the data simultaneously without conflicts or data loss; it has been easy to reproduce the exact state of the data at any point in the project; it has provided safety net in case of data loss or corruption; allows to track different versions of the data and the corresponding results to choose the best result 
+Having a version control of our data has helped us in the development of our project in several weeks: has made it easy to understand how the data has evolved; has allow the three members of the team to work on the data simultaneously without conflicts or data loss; it has been easy to reproduce the exact state of the data at any point in the project; it has provided safety net in case of data loss or corruption; allows to track different versions of the data and the corresponding results to choose the best result. ---
 
 ### Question 11
 
@@ -307,7 +307,7 @@ Having a version control of our data has helped us in the development of our pro
 >
 > Answer:
 
-We have made use of: Unittesting, Github actions and Lightning.
+--- We have made use of: Unittesting, Github actions and Lightning.
 -	Unittesting. Test that tests individual parts of the code base to test for correctness. We created the folder ‘tests’, where we have implemented three different tests:
       o     tets_data.py: checks that the shape of each image is [batch_size, 3, 256, 256] and the labels size should be like the batch size. Also checks if the data is present at /data.
       o     test_model.py: checks that the output size, after applying the model, is correct ([batch_size, 11]). 
@@ -319,8 +319,9 @@ We store our different workflows at the folder .github/workflows:
       o	flake8.yml: runs flake8 on the repository
 -	Pytorch Lightning. Adding the LightningModule to the first approach of our model.py, and two new methods needed: ‘training_step’ and ‘configure_optimizers’
                                                                                                                                     
-We don't make use of caching.                                                                                                        **EXAMPLE OF A TRIGGERED WORKFLOW --> FALTA**
- ---
+We don't make use of caching.                                                                                                        
+
+**EXAMPLE OF A TRIGGERED WORKFLOW --> FALTA** ---
 
 ## Running code and tracking experiments
 
@@ -339,14 +340,14 @@ We don't make use of caching.                                                   
 >
 > Answer:
 
-We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
+--- We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
 |--config
 |  |--default_config.yaml
 |  |--experiment
 |   |--exp1.yaml
 ‘default_config.yaml’ points to the experiment that we want to run. That experiment is contained in the folder ‘experiment’ with the hyperparameters needed to run the script (‘batch_size’, ‘lr’, ‘n_epoch’, ‘limit_batches’ and if we want to run the training with the lightning api or without it) and a value.
 We load the configuration file inside our script using hydra, and to run our training calling the train_model.py from the terminal:
-                                `python src/models/train_model.py`
+                                `python src/models/train_model.py` ---
             
             
 ### Question 13
@@ -362,13 +363,13 @@ We load the configuration file inside our script using hydra, and to run our tra
 >
 > Answer:
 
-We made use of config files , applying Hydra, a configuration tool that is based around writing those config files to keep track of hyperparameters and save them with the experiment.
+--- We made use of config files , applying Hydra, a configuration tool that is based around writing those config files to keep track of hyperparameters and save them with the experiment.
 Whenever an experiment is run the following happens:
 -	we have to specify the hyperparameters values in a .yaml file in config/experiment 
 -	load the configuration file inside your script (using hydra) that incorporates the hyperparameters into the script
 -	Run the script
 -	By default hydra will write the results to a ‘outputs’ folder
-To reproduce an experiment one would have to choose the .yaml file of the experiment wanted and run the script providing that configuration file as an argument. In our case, right now, we just have one experiment (‘exp1.yaml), so we run the training script without argument: `python src/models/train_model.py`
+To reproduce an experiment one would have to choose the .yaml file of the experiment wanted and run the script providing that configuration file as an argument. In our case, right now, we just have one experiment (‘exp1.yaml), so we run the training script without argument: `python src/models/train_model.py` ---
 
 
 ### Question 14
@@ -416,10 +417,10 @@ To reproduce an experiment one would have to choose the .yaml file of the experi
 >
 > Answer:
 
-We run the different scripts in VS, so when running into bugs we inserted inline breakpoints in the code and then execute the script in debug mode. 
+--- We run the different scripts in VS, so when running into bugs we inserted inline breakpoints in the code and then execute the script in debug mode. 
 The code runs until the breakpoint, and after that we can run the rest of the code line by line, so we can see at which point of the code the model is failing and we can also see the value of the different variables using the debug console.
                                           
-                                          **PROFILE?**
+                                          **PROFILE?** ---
 
 
 ## Working in the cloud
@@ -437,10 +438,12 @@ The code runs until the breakpoint, and after that we can run the rest of the co
 >
 > Answer:
 
-We used the following services:
+--- We used the following services:
 -	Compute Engine: to create and run a virtual machine, which has allowed us to essentially run an operating system that behaves like a completely separate computer. After creating an appropriate VM we log into it and run our code in that machine. **COMENTAR CARACTERÍSTICAS ETC**
 -	Cloud storage: to store the data in the cloud to make it easier to share, expand and not to lose it.
--	Container registry: **COMPLETAR**
+-	Container registry: 
+                                    
+                                                      **COMPLETAR** ---
 
 
 ### Question 18
@@ -464,7 +467,7 @@ We used the following services:
 > **You can take inspiration from [this figure](figures/bucket.png).**
 >
 > Answer:
-![question19](https://user-images.githubusercontent.com/99659050/213477437-9e3acc6e-0f42-498b-916b-8bb3a3d006a4.jpeg)
+--- [question19](figures/question19.jpeg) ---
 
             
 ### Question 20
@@ -473,7 +476,7 @@ We used the following services:
 > **You can take inspiration from [this figure](figures/registry.png).**
 >
 > Answer:
-![question 20](https://user-images.githubusercontent.com/99659050/213477525-03772243-08d4-49a1-b67f-7c5e9cffc493.jpeg)
+--- [question20](figures/question20.jpeg) ---
 
 
 ### Question 21
@@ -482,7 +485,7 @@ We used the following services:
 > **your project. You can take inspiration from [this figure](figures/build.png).**
 >
 > Answer:
-![question 21](https://user-images.githubusercontent.com/99659050/213477589-37df1549-079a-468f-b892-babb582b027b.jpeg)
+--- [question21](figures/question21.jpeg) ---
 
 
 ### Question 22
