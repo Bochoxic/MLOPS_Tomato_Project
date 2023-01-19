@@ -340,10 +340,11 @@ We don't make use of caching.                                                   
 > Answer:
 
 We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
-|--config
+`|--config
 |  |--default_config.yaml
 |  |--experiment
-|   |--exp1.yaml
+|   |--exp1.yaml`
+            
 ‘default_config.yaml’ points to the experiment that we want to run. That experiment is contained in the folder ‘experiment’ with the hyperparameters needed to run the script (‘batch_size’, ‘lr’, ‘n_epoch’, ‘limit_batches’ and if we want to run the training with the lightning api or without it) and a value.
 We load the configuration file inside our script using hydra, and to run our training calling the train_model.py from the terminal:
                                 `python src/models/train_model.py`
