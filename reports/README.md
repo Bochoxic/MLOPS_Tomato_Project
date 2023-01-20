@@ -425,12 +425,10 @@ The most important parameters that we are tracking depend on each case. In the f
 >
 > Answer:
 
----
-We run the different scripts in VS, so when running into bugs we inserted inline breakpoints in the code and then execute the script in debug mode. 
+--- We run the different scripts in VS, so when running into bugs we inserted inline breakpoints in the code and then execute the script in debug mode. 
 The code runs until the breakpoint, and after that we can run the rest of the code line by line, so we can see at which point of the code the model is failing and we can also see the value of the different variables using the debug console.
                                           
-We have not had time to profile the code because it was not a priority task. However, we have performed profiling during lecture exercises. It is a very useful tool that allow us to know how many time it takes to run the code and where are bottlenecks.  
----
+We have not had time to profile the code because it was not a priority task. However, we have performed profiling during lecture exercises. It is a very useful tool that allow us to know how many time it takes to run the code and where are bottlenecks. ---
 
 
 ## Working in the cloud
