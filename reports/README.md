@@ -156,6 +156,7 @@ end of the project.
 >
 > Answer:
 
+
 --- We are using the PyTorch Image Models framework, because our project is about the classification of tomato diseases from tomato leaves images.
 Among all the models offered by this framework, we have decided to choose 'resnet' as it is intended for image classification.
 In addition, when loading the model, this framework allows us to select a pre-trained model from which to start as a basis for better training.
@@ -286,7 +287,8 @@ At the beginning we didn’t know how to work with GitHub correctly, but at the 
 
 --- We did make use of DVC in the following way: Firstly, we made dvc work together with our own Google drive to storage data. However, a big limitation of this is that we need to authentic each time we try to either push or pull the data. Therefore, we need to use an API instead which is offered through gcp. So, we created a bucket through the GCP page and after that, we changed the storage from our Google drive to this new Google cloud storage and pushed the data to the cloud.
 
-Having a version control of our data has helped us in the development of our project in several weeks: has made it easy to understand how the data has evolved; has allow the three members of the team to work on the data simultaneously without conflicts or data loss; it has been easy to reproduce the exact state of the data at any point in the project; it has provided safety net in case of data loss or corruption; allows to track different versions of the data and the corresponding results to choose the best result ---
+Having a version control of our data has helped us in the development of our project in several weeks: has made it easy to understand how the data has evolved; has allow the three members of the team to work on the data simultaneously without conflicts or data loss; it has been easy to reproduce the exact state of the data at any point in the project; it has provided safety net in case of data loss or corruption; allows to track different versions of the data and the corresponding results to choose the best result. ---
+
 
 ### Question 11
 
@@ -302,8 +304,10 @@ Having a version control of our data has helped us in the development of our pro
 >
 > Answer:
 
+
 ---  CI in our project is very important, because it takes care of the first part of the developer pipeline that has to do with the code base, code building and code testing
       We have organized ur CI in different files where we used unittesting through Github actions.
+
 -	Unittesting. Test that tests individual parts of the code base to test for correctness. We created the folder ‘tests’, where we have implemented three different tests:
       - tets_data.py: checks that the shape of each image is [batch_size, 3, 256, 256] and the labels size should be like the batch size. Also checks if the data is present at /data.
       - test_model.py: checks that the output size, after applying the model, is correct ([batch_size, 11]). 
@@ -314,8 +318,10 @@ We store our different workflows at the folder .github/workflows:
        - isort.yml: runs isort on the repository
        - flake8.yml: runs flake8 on the repository
                                                                                                                                     
+
 We didn't make use of caching.
 An example of a triggered workflow can be seen here: https://github.com/Bochoxic/MLOPS_Tomato_Project/actions ---
+
 
 ## Running code and tracking experiments
 
@@ -334,6 +340,7 @@ An example of a triggered workflow can be seen here: https://github.com/Bochoxic
 We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
 
             `|--config
+
             
              |    |--default_config.yaml
             
@@ -366,6 +373,7 @@ Whenever an experiment is run the following happens:
 -	load the configuration file inside your script (using hydra) that incorporates the hyperparameters into the script
 -	Run the script
 -	By default hydra will write the results to a ‘outputs’ folder
+
 To reproduce an experiment one would have to choose the .yaml file of the experiment wanted and select it in the config_default.yaml, which is the high-level configuration file. So, the following command should be use to reproduce the experiment once the config file have been set up: `python src/models/train_model.py` ---
 
 
@@ -417,12 +425,14 @@ The most important parameters that we are tracking depend on each case. In the f
 > *run of our main code at some point that showed ...*
 >
 > Answer:
+
 ---
 We run the different scripts in VS, so when running into bugs we inserted inline breakpoints in the code and then execute the script in debug mode. 
 The code runs until the breakpoint, and after that we can run the rest of the code line by line, so we can see at which point of the code the model is failing and we can also see the value of the different variables using the debug console.
                                           
 We have not had time to profile the code because it was not a priority task. However, we have performed profiling during lecture exercises. It is a very useful tool that allow us to know how many time it takes to run the code and where are bottlenecks.  
 ---
+
 
 ## Working in the cloud
 
@@ -438,12 +448,14 @@ We have not had time to profile the code because it was not a priority task. How
 > *We used the following two services: Engine and Bucket. Engine is used for... and Bucket is used for...*
 >
 > Answer:
+
 ---
 We used the following services:
 -	Compute Engine: to create and run a virtual machine, which has allowed us to essentially run an operating system that behaves like a completely separate computer. After creating an appropriate VM we log into it and run our code in that machine. We have been able to use GPU instance with which the model training has been faster, leting us to develop better models. 
 -	Cloud storage: to store the data in the cloud to make it easier to share, expand and not to lose it. We have created a bucket to save the images using dvc, b       being able to pull them whenever we wanted. 
 -	Container registry: It is where docker images are saved. 
 ---
+
 
 ### Question 18
 
@@ -465,6 +477,7 @@ We used the following services:
 > **You can take inspiration from [this figure](figures/bucket.png).**
 >
 > Answer:
+
 ![GCPbucket](figures/question19.jpeg)
 
 
@@ -474,7 +487,9 @@ We used the following services:
 > **You can take inspiration from [this figure](figures/registry.png).**
 >
 > Answer:
+
 ![GCPcontainerRegistry](figures/question20.jpeg)
+
 
 
 ### Question 21
@@ -483,7 +498,9 @@ We used the following services:
 > **your project. You can take inspiration from [this figure](figures/build.png).**
 >
 > Answer:
+
 ![GCPhistory](figures/question21.jpeg)
+
 
 
 ### Question 22
