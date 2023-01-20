@@ -446,12 +446,10 @@ We have not had time to profile the code because it was not a priority task. How
 >
 > Answer:
 
----
-We used the following services:
+--- We used the following services:
 -	Compute Engine: to create and run a virtual machine, which has allowed us to essentially run an operating system that behaves like a completely separate computer. After creating an appropriate VM we log into it and run our code in that machine. We have been able to use GPU instance with which the model training has been faster, leting us to develop better models. 
 -	Cloud storage: to store the data in the cloud to make it easier to share, expand and not to lose it. We have created a bucket to save the images using dvc, b       being able to pull them whenever we wanted. 
--	Container registry: It is where docker images are saved. 
----
+-	Container registry: It is where docker images are saved. ---
 
 
 ### Question 18
