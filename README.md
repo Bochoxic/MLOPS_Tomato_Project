@@ -15,19 +15,33 @@ Project Organization
 │   api.dockerfile
 
 │   cloudbuild.yaml
+
 │   data.dvc
+
 │   Dockerfile
+
 │   image.jpg
+
 │   LICENSE
+
 │   Makefile
+
 │   prueba.JPG
+
 │   README.md
+
 │   requirements.txt
+
 │   requirements_api.txt
+
 │   setup.py
+
 │   test.dockerfile
+
 │   test_environment.py
+
 │   tox.ini
+
 │
 ├───.dvc
 │       .gitignore
