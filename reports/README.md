@@ -319,7 +319,7 @@ We store our different workflows at the folder .github/workflows:
        - flake8.yml: runs flake8 on the repository
                                                                                                                                     
 
-We didn't make use of caching.
+We did not make use of caching.
 An example of a triggered workflow can be seen here: https://github.com/Bochoxic/MLOPS_Tomato_Project/actions ---
 
 
@@ -411,7 +411,7 @@ The most important parameters that we are tracking depend on each case. In the f
 >
 > Answer:
 
---- For our project we have developed several images: one for training, inference and deployment.  ---
+--- Docker has an essential role in our project, we have two main docker files, one for training and the other for deploying the API. In the training one, we trained the model locally and tested it on all our computers before moving to the cloud. The second one is the one that we used most, we used it to deploy the API on the cloud. We upload the container with the model and the API function and run it online. You can check it on this link: https://api-predictor-service-x2zysz7rqa-ey.a.run.app You can test it by uploading the prueba.JPG that is in our repository.  ---
 
 ### Question 16
 
@@ -520,7 +520,7 @@ We used the following services:
 --- Deployment is very important in production stages to let people execute code without looking at it. 
 To be able to deploy the model, firs of all has been needed to develop an api. This api allow the users to interact with the application. For the development of the api, the package Fastapi has been used. The api consist of a function that receive an image which is passed to the model predictor. This predictor loads a model that has been trained previously. Finally, the output of the api is the  prediction of the model and the probability of being that class.  
 After having developed the api locally, we have built a docker container. This container has been pushed to the container registry in GCP. Once the container pushed, we have been able to develop a service which executes the container when a request is received. 
-Finally, executing the following link: https://api-service-x2zysz7rqa-ey.a.run.app and going to /docs, the predict function can be executed which need an image of a tomato leaf to predict if it has any issue. ---
+Finally, executing the following link: https://api-predictor-service-x2zysz7rqa-ey.a.run.app and going to /docs, the predict function can be executed which need an image of a tomato leaf to predict if it has any issue. ---
 
 ### Question 23
 
@@ -535,7 +535,7 @@ Finally, executing the following link: https://api-service-x2zysz7rqa-ey.a.run.a
 >
 > Answer:
 
---- question 23 fill here ---
+--- We tried to implement it but we don’t manage to do it. We followed all the steps that were taken on the repo example but nothing appears there. Monitoring will be a nice implementation in our model due to we would be able to know the behaviour of the model, thanks to knowing how many times is the API request, the time that it takes, and the images that were uploaded. We neither implemented any alert on google cloud, but it is an easy way to also know how many times the API was requested in order to know more information about it. ---
 
 ### Question 24
 
@@ -549,7 +549,7 @@ Finally, executing the following link: https://api-service-x2zysz7rqa-ey.a.run.a
 >
 > Answer:
 
---- question 24 fill here ---
+--- We have used more than 30 credits, but one of our members, who ran the training model in a GPU cloud, ran out of credits. ---
 
 ## Overall discussion of project
 
