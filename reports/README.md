@@ -336,6 +336,7 @@ An example of a triggered workflow can be seen here: https://github.com/Bochoxic
 > Answer length: 50-100 words.
 
 > Answer:
+      
 --- We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
 
             `|--config
