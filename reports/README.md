@@ -600,5 +600,5 @@ Finally, executing the following link: https://api-predictor-service-x2zysz7rqa-
 >
 > Answer:
 
---- question 27 fill here ---
+--- All the group members worked together, otherwise, at the final moment of the project, worked on more specific tasks. Student s222928 was in charge of training the model on the cloud and, organize the repository in GitHub, developing part of the CD. Student s222929 was in charge of building the deployment container and the API on the cloud. Last but not least, Student s221926 was in charge of the training models, configuring the hydra documents and helping with the API. ---
 
