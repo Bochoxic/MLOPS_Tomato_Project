@@ -336,8 +336,7 @@ An example of a triggered workflow can be seen here: https://github.com/Bochoxic
 > Answer length: 50-100 words.
 
 > Answer:
----
-We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
+--- We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
 
             `|--config
 
@@ -351,8 +350,7 @@ We use Hydra, a tool to write config file to keep track of hyperparameters, with
 ‘default_config.yaml’ points to the experiment that we want to run. That experiment is contained in the folder ‘experiment’ with the hyperparameters needed to run the script (‘batch_size’, ‘lr’, ‘n_epoch’, ‘limit_batches’(just used to test the training) and if we want to run the training with the lightning api or without it) and a value.
 
 We load the configuration file inside our script using hydra, and to run our training calling the train_model.py from the terminal:
-                                `python src/models/train_model.py`'
----
+                                `python src/models/train_model.py` ---
             
 ### Question 13
 
