@@ -464,6 +464,7 @@ We have not had time to profile the code because it was not a priority task. How
 > *using a custom container: ...*
 >
 > Answer:
+      
 --- Compute Engine allow us to create virtual machines (instances) in which we can set up the environment needed to run our experiments. The main advantage is the hardware available, being this much better than the ones we can have in our local machines. We are using an Nvidia V100, which improves our training speed, achieving sweep hyperparameters tuning. At first, we had problems selecting the GPU, we tried in different regions to use an Nvidia T4, but it was not available. Finally, we tried to use an Nvidia V100, and we succeeded, but we forgot to change the region, so we ran all the training in the US. ---
 
 ### Question 19
