@@ -43,6 +43,7 @@ Project Organization
 │   tox.ini
 
 │
+
 ├───.dvc
 
 │       .gitignore
@@ -50,6 +51,7 @@ Project Organization
 │       config
 
 │
+
 ├───.github
 
 │   └───workflows
@@ -61,6 +63,7 @@ Project Organization
 │           tests.yml
 
 │
+
 ├───config
 
 │   │   default_config.yaml
@@ -75,6 +78,7 @@ Project Organization
 │           exp2.yaml
 
 │
+
 ├───docs
 
 │       commands.rst
@@ -90,21 +94,25 @@ Project Organization
 │       Makefile
 
 │
+
 ├───models
 
 │       .gitkeep
 
 │
+
 ├───notebooks
 
 │       .gitkeep
 
 │
+
 ├───references
 
 │       .gitkeep
 
 │
+
 ├───reports
 
 │   │   .gitkeep
@@ -129,6 +137,7 @@ Project Organization
 │           question21.jpeg
 
 │
+
 ├───src
 
 │   │   __init__.py
@@ -141,6 +150,7 @@ Project Organization
 │   │           main.py
 
 │   │
+
 │   ├───data
 
 │   │       .gitkeep
