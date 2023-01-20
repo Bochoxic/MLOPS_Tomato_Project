@@ -565,7 +565,9 @@ Finally, executing the following link: https://api-predictor-service-x2zysz7rqa-
 > *Whenever we commit code and puch to github, it auto triggers ... and ... . From there the diagram shows ...*
 >
 > Answer:
+      
 ![MLOperationsPipeline](figures/MLOperationsPipeline.jpeg)
+      
 --- Initially, we developed our python functions using lightning and PyTorch, using a pre-trained model from image PyTorch models (a resnet model). We trained our model locally to test if everything was okay, recording all the logs in wandb. Once it works, in a Virtual Machine in Google Cloud, using an Nvidia GPU, we clone our repository, and started training the model on the cloud. We also have a trigger that creates a trainer docker image and saves it on the Bucket. Also, each time we push something to the GitHub repository before it is merged to the main branch it has to pass a test of the data, the model and the train functions. It also creates an action that stiles the code thanks to isort and passing the flake8 test.
 When we found an accurate model, which had been trained on the cloud, we started trying to make the deployment of the model. Initially, we developed the API locally, with some python functions, using fastapi. Then, when it works, we create a docker image, and (manually) upload it to google, to deploy the API on the cloud. Once the API is on the cloud, with the Cloud run functionality, the user can request some predictions to the API. The user also can pull our images and our code from the repositories. ---
 
