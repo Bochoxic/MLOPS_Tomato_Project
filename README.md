@@ -6,6 +6,8 @@ Vicente Bosch & Paloma Guiral & Víctor Vigara
 
 Project Organization
 ------------
+`
+
 │   .dvcignore
 │   .gitignore
 │   api.dockerfile
@@ -107,6 +109,7 @@ Project Organization
 │
 └───tests
         test_data.py
+        `
         test_model.py
         test_training.py
 
