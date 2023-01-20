@@ -8,9 +8,12 @@ Project Organization
 ------------
 `
 
-│---  .dvcignore
+│    .dvcignore
+
 │   .gitignore
+
 │   api.dockerfile
+
 │   cloudbuild.yaml
 │   data.dvc
 │   Dockerfile
