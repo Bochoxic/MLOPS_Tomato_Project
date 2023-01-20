@@ -583,7 +583,10 @@ Finally, executing the following link: https://api-predictor-service-x2zysz7rqa-
 >
 > Answer:
 
---- question 26 fill here ---
+--- In the beginning, one of the first challenges was related to docker. Building a simple image has not been too difficult, but the problems started when introducing DVC to pull the data every time the images were run. In the end, googling a lot we have been able to overcome this problem because the .dvc folder is configured to work with a git repository, so we had to deactivate that option to be able to execute the command “dvc pull” inside a docker container which wasn’t a repository. 
+When we started to develop cloud deployment, to have the API running in GCP, we tried to develop it inside a cloud function. We tried to start from the example about sklearn that was uploaded in the course, however, it was impossible to run our own API. In the end, we decided to try to deploy the API with Cloud Run. Finally, building a docker image of the API locally and pushing it to GCP was enough to create the cloud run and have the API working. 
+Finally, we haven’t been able to implement the monitoring of the API following the steps of the course and we haven’t been able to manage how to solve it. 
+ ---
 
 ### Question 27
 
