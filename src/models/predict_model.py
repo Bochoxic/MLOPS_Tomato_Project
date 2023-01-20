@@ -28,6 +28,7 @@ def predict(model_checkpoint, image_path):
     top_p, top_class = probs.topk(1, dim=1)
     label = labels_dict[str(top_class.item())]
     probability = top_p.item()*100
+    print(label, probability)
     return probability, label
 
 predict('models/lightning/trained_model.pt', 'prueba.jpg')

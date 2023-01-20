@@ -29,7 +29,7 @@ async def cv_model(data: UploadFile = File(...)):
         image.write(content)
         image.close()
     
-    prob, label = predict('models/model.pkl',"image.jpg")
+    prob, label = predict('models/lightning/trained_model.pt',"image.jpg")
    
     return {'Label': label, 'Probability': prob}
 
