@@ -9,7 +9,6 @@ import pytest
 import pytorch_lightning as pl
 import torch
 from model import Net
-from tomatoDataset import tomatoDataset
 from torch.utils.data import DataLoader
 from torchvision import transforms
 import torchvision

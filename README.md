@@ -1,7 +1,8 @@
 Tomato disease project
 ==============================
 
-A short description of the project.
+Vicente Bosch & Paloma Guiral & Víctor Vigara
+
 
 Project Organization
 ------------

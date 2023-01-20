@@ -93,15 +93,15 @@ end of the project.
 * [x] Add a model file and a training script and get that running
 * [x] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
 * [x] Remember to comply with good coding practices (`pep8`) while doing the project
-* [ ] Do a bit of code typing and remember to document essential parts of your code
+* [x] Do a bit of code typing and remember to document essential parts of your code
 * [x] Setup version control for your data or part of your data
-* [ ] Construct one or multiple docker files for your code
-* [ ] Build the docker files locally and make sure they work as intended
+* [x] Construct one or multiple docker files for your code
+* [x] Build the docker files locally and make sure they work as intended
 * [x] Write one or multiple configurations files for your experiments
 * [x] Used Hydra to load the configurations and manage your hyperparameters
 * [ ] When you have something that works somewhat, remember at some point to to some profiling and see if
       you can optimize your code
-* [ ] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
+* [x] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
       consider running a hyperparameter optimization sweep.
 * [x] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
@@ -109,14 +109,14 @@ end of the project.
 
 * [x] Write unit tests related to the data part of your code
 * [x] Write unit tests related to model construction and or model training
-* [ ] Calculate the coverage.
+* [x] Calculate the coverage.
 * [x] Get some continuous integration running on the github repository
 * [x] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
-* [ ] Create a trigger workflow for automatically building your docker images
-* [ ] Get your model training in GCP using either the Engine or Vertex AI
-* [ ] Create a FastAPI application that can do inference using your model
+* [x] Create a trigger workflow for automatically building your docker images
+* [x] Get your model training in GCP using either the Engine or Vertex AI
+* [x] Create a FastAPI application that can do inference using your model
 * [ ] If applicable, consider deploying the model locally using torchserve
-* [ ] Deploy your model in GCP using either Functions or Run as the backend
+* [x] Deploy your model in GCP using either Functions or Run as the backend
 
 ### Week 3
 
@@ -129,9 +129,9 @@ end of the project.
 
 ### Additional
 
-* [ ] Revisit your initial project description. Did the project turn out as you wanted?
-* [ ] Make sure all group members have a understanding about all parts of the project
-* [ ] Uploaded all your code to github
+* [x] Revisit your initial project description. Did the project turn out as you wanted?
+* [x] Make sure all group members have a understanding about all parts of the project
+* [x] Uploaded all your code to github
 
 ## Group information
 
@@ -147,7 +147,7 @@ end of the project.
 
 > Answer:
 
-s222928, s221924, s222929
+--- s222928, s221924, s222929 ---
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -156,10 +156,11 @@ s222928, s221924, s222929
 >
 > Answer:
 
---- We are using the PyTorch Image Models framework, because our project is about the classification of tomato diseases from tomato leaves images
+
+--- We are using the PyTorch Image Models framework, because our project is about the classification of tomato diseases from tomato leaves images.
 Among all the models offered by this framework, we have decided to choose 'resnet' as it is intended for image classification.
 In addition, when loading the model, this framework allows us to select a pre-trained model from which to start as a basis for better training.
-After training the pre-trained model with our images, an optimal classification was obtained. ---
+After training the pre-trained model with our images, we have achieve an accuracy of 95%. This model has been trained on the google cloud using sweeping and checking all the parameters in wandb. ---
 
 ## Coding environment
 
@@ -171,11 +172,6 @@ After training the pre-trained model with our images, an optimal classification 
 > **through to get an exact copy of your environment.**
 >
 > Answer length: 100-200 words
->
-> Example:
-> *We used ... for managing our dependencies. The list of dependencies was auto-generated using ... . To get a*
-> *complete copy of our development enviroment, one would have to run the following commands*
->
 > Answer:
 
 --- We used conda to create a virtual environment to avoid dependencies version issue between different projects. However, we have used pip to install the dependencies in the conda environment. 
@@ -197,7 +193,6 @@ A new member should clone the github project repository and execute the followin
 > Answer:
 --- cookie-cutter is standardized way of creating project structures, making one able to faster get understand the other persons code. It just a template and maybe not all parts of it are important for our project. From the cookiecutter template we have filled out the 'src' folder:
 - src: here we have filled out the following folders: 
-      
       -'data' where is the code to download and make the datasets for our model. 
       - 'models' where is the code to create the network, train and predict.
 We have added the following folders for running our experiments: 
@@ -205,7 +200,7 @@ We have added the following folders for running our experiments:
 - .github: .github/workflows/ contains different workflows
 - config: contains config files to keep track of hyperparameters
 - reports: contains the project description and exam
--tests: contains the unit testing to tests individual parts of your code base. ---
+- tests: contains the unit testing to tests individual parts of your code base. ---
 
 
 ### Question 6
@@ -219,7 +214,7 @@ We have added the following folders for running our experiments:
 
 --- A part from the structure, to maintain the quality and format of the code we have implemented:
 -     Documentation: to remember all details about the code.
--	Styling: we used flake8 to check if our code is pep8 (the official style guide for python). Important when working multiple people together who have different coding styles. We also have taken care of the import statements, applying the isort standard.
+-	Styling: we used flake8 to check if our code is pep8 (the official style guide for python). Important when working multiple people together who have different       coding styles. We also have taken care of the import statements, applying the isort standard.
 -	Typing: specify data types for variables. You can know the expected types of input arguments and returns by just reading the code. ---
 
 
@@ -234,9 +229,6 @@ We have added the following folders for running our experiments:
 >
 > Answer length: 50-100 words.
 >
-> Example:
-> *In total we have implemented X tests. Primarily we are testing ... and ... as these the most critical parts of our*
-> *application but also ... .*
 >
 > Answer:
 
@@ -259,7 +251,9 @@ We have added the following folders for running our experiments:
 >
 > Answer:
 
---- question 8 fill here ---
+--- The code coverage of our code is 82%.
+Despite the fact our code had 100% coverage we couldn’t trust it to be error free. This is due to possible errors in the test codes in which we hadn't taken into account some tests to be passed. So, it is more related with the quality of the tests than to the coverage of these ones.
+To be able to develop quality code tests we should read more about this topic because the ones we have implemented are basic ones. For example we have check for the dimensions of the tensors in the inputs and outputs of our codes. ---
 
 ### Question 9
 
@@ -274,7 +268,9 @@ We have added the following folders for running our experiments:
 >
 > Answer:
 
---- question 9 fill here ---
+--- We made use of both branches and PRs in our project. We have created branches for each of the features that we were developing. We have not created branches based on the team members because we were working together trying to fix errors all together.
+When the feature was working correctly a pull request was done to be able to merge the branch with main. Once the pull request was done the code had to pass the tests explained before to pass de pull request successfully.
+At the beginning we didn’t know how to work with GitHub correctly, but at the end we think we have learned about it. ---
 
 ### Question 10
 
@@ -293,6 +289,7 @@ We have added the following folders for running our experiments:
 
 Having a version control of our data has helped us in the development of our project in several weeks: has made it easy to understand how the data has evolved; has allow the three members of the team to work on the data simultaneously without conflicts or data loss; it has been easy to reproduce the exact state of the data at any point in the project; it has provided safety net in case of data loss or corruption; allows to track different versions of the data and the corresponding results to choose the best result. ---
 
+
 ### Question 11
 
 > **Discuss you continues integration setup. What kind of CI are you running (unittesting, linting, etc.)? Do you test**
@@ -307,21 +304,24 @@ Having a version control of our data has helped us in the development of our pro
 >
 > Answer:
 
---- We have made use of: Unittesting, Github actions and Lightning.
+
+---  CI in our project is very important, because it takes care of the first part of the developer pipeline that has to do with the code base, code building and code testing
+      We have organized ur CI in different files where we used unittesting through Github actions.
+
 -	Unittesting. Test that tests individual parts of the code base to test for correctness. We created the folder ‘tests’, where we have implemented three different tests:
-      o     tets_data.py: checks that the shape of each image is [batch_size, 3, 256, 256] and the labels size should be like the batch size. Also checks if the data is present at /data.
-      o     test_model.py: checks that the output size, after applying the model, is correct ([batch_size, 11]). 
-      o     test_training.py: trains the model and checks that: the training loss is >=0, validation loss is >=0 and validation accuracy is <=1
+      - tets_data.py: checks that the shape of each image is [batch_size, 3, 256, 256] and the labels size should be like the batch size. Also checks if the data is present at /data.
+      - test_model.py: checks that the output size, after applying the model, is correct ([batch_size, 11]). 
+      - test_training.py: trains the model and checks that: the training loss is >=0, validation loss is >=0 and validation accuracy is <=1
 -	Github actions. To automatize the testing, such that it done every time we push to our repository.
 We store our different workflows at the folder .github/workflows:
-      o	tests.yml: run the tests for us
-      o	isort.yml: runs isort on the repository
-      o	flake8.yml: runs flake8 on the repository
--	Pytorch Lightning. Adding the LightningModule to the first approach of our model.py, and two new methods needed: ‘training_step’ and ‘configure_optimizers’
+       - tests.yml: run the tests for us
+       - isort.yml: runs isort on the repository
+       - flake8.yml: runs flake8 on the repository
                                                                                                                                     
-We don't make use of caching.                                                                                                        
 
-**EXAMPLE OF A TRIGGERED WORKFLOW --> FALTA** ---
+We didn't make use of caching.
+An example of a triggered workflow can be seen here: https://github.com/Bochoxic/MLOPS_Tomato_Project/actions ---
+
 
 ## Running code and tracking experiments
 
@@ -334,21 +334,25 @@ We don't make use of caching.
 > **run a experiment.**
 >
 > Answer length: 50-100 words.
->
-> Example:
-> *We used a simple argparser, that worked in the following way: python my_script.py --lr 1e-3 --batch_size 25*
->
-> Answer:
 
---- We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
-|--config
-|  |--default_config.yaml
-|  |--experiment
-|   |--exp1.yaml
-‘default_config.yaml’ points to the experiment that we want to run. That experiment is contained in the folder ‘experiment’ with the hyperparameters needed to run the script (‘batch_size’, ‘lr’, ‘n_epoch’, ‘limit_batches’ and if we want to run the training with the lightning api or without it) and a value.
-We load the configuration file inside our script using hydra, and to run our training calling the train_model.py from the terminal:
-                                `python src/models/train_model.py` ---
+> Answer:
+---
+We use Hydra, a tool to write config file to keep track of hyperparameters, with the structure:
+
+            `|--config
+
             
+             |    |--default_config.yaml
+            
+            |     |--experiment
+            
+            |            |--exp1.yaml`
+            
+‘default_config.yaml’ points to the experiment that we want to run. That experiment is contained in the folder ‘experiment’ with the hyperparameters needed to run the script (‘batch_size’, ‘lr’, ‘n_epoch’, ‘limit_batches’(just used to test the training) and if we want to run the training with the lightning api or without it) and a value.
+
+We load the configuration file inside our script using hydra, and to run our training calling the train_model.py from the terminal:
+                                `python src/models/train_model.py`'
+---
             
 ### Question 13
 
@@ -369,7 +373,8 @@ Whenever an experiment is run the following happens:
 -	load the configuration file inside your script (using hydra) that incorporates the hyperparameters into the script
 -	Run the script
 -	By default hydra will write the results to a ‘outputs’ folder
-To reproduce an experiment one would have to choose the .yaml file of the experiment wanted and run the script providing that configuration file as an argument. In our case, right now, we just have one experiment (‘exp1.yaml), so we run the training script without argument: `python src/models/train_model.py` ---
+
+To reproduce an experiment one would have to choose the .yaml file of the experiment wanted and select it in the config_default.yaml, which is the high-level configuration file. So, the following command should be use to reproduce the experiment once the config file have been set up: `python src/models/train_model.py` ---
 
 
 ### Question 14
@@ -387,7 +392,11 @@ To reproduce an experiment one would have to choose the .yaml file of the experi
 >
 > Answer:
 
---- question 14 fill here ---
+--- ![Wandb Screenshot 1](figures/wandb1.png) ![Wandb Screenshot 2](figures/wandb2.png)
+      
+In the first image, we have done a sweeping experiment to determine our best model, which we will use later on the cloud deployment. This sweep has been run in the cloud, in a virtual machine, doing 704 training (until the virtual machine ran out of memory due to we saved all the 3 best models of each training), and finding the best hyperparameters. We get a problem in this case that we can not visualize the values of accuracy and loss when it finishes. In the other figure, you can see an example of a test that we did try to configure the sweep locally.
+      
+The most important parameters that we are tracking depend on each case. In the first picture, the most important parameters are the learning rate, the number of epochs and the batch size. Of course, is also essential to know the accuracy and loss of training and validation, because we will use the learning rate, the number of epochs and the batch size to determine the model with the best accuracy. In the second picture, our main goal was to check if we could track all the parameters that we wanted before deploying them on the cloud. ---
 
 ### Question 15
 
@@ -402,7 +411,7 @@ To reproduce an experiment one would have to choose the .yaml file of the experi
 >
 > Answer:
 
---- question 15 fill here ---
+--- For our project we have developed several images: one for training, inference and deployment.  ---
 
 ### Question 16
 
@@ -417,10 +426,12 @@ To reproduce an experiment one would have to choose the .yaml file of the experi
 >
 > Answer:
 
---- We run the different scripts in VS, so when running into bugs we inserted inline breakpoints in the code and then execute the script in debug mode. 
+---
+We run the different scripts in VS, so when running into bugs we inserted inline breakpoints in the code and then execute the script in debug mode. 
 The code runs until the breakpoint, and after that we can run the rest of the code line by line, so we can see at which point of the code the model is failing and we can also see the value of the different variables using the debug console.
                                           
-                                          **PROFILE?** ---
+We have not had time to profile the code because it was not a priority task. However, we have performed profiling during lecture exercises. It is a very useful tool that allow us to know how many time it takes to run the code and where are bottlenecks.  
+---
 
 
 ## Working in the cloud
@@ -438,12 +449,12 @@ The code runs until the breakpoint, and after that we can run the rest of the co
 >
 > Answer:
 
---- We used the following services:
--	Compute Engine: to create and run a virtual machine, which has allowed us to essentially run an operating system that behaves like a completely separate computer. After creating an appropriate VM we log into it and run our code in that machine. **COMENTAR CARACTERÍSTICAS ETC**
--	Cloud storage: to store the data in the cloud to make it easier to share, expand and not to lose it.
--	Container registry: 
-                                    
-                                                      **COMPLETAR** ---
+---
+We used the following services:
+-	Compute Engine: to create and run a virtual machine, which has allowed us to essentially run an operating system that behaves like a completely separate computer. After creating an appropriate VM we log into it and run our code in that machine. We have been able to use GPU instance with which the model training has been faster, leting us to develop better models. 
+-	Cloud storage: to store the data in the cloud to make it easier to share, expand and not to lose it. We have created a bucket to save the images using dvc, b       being able to pull them whenever we wanted. 
+-	Container registry: It is where docker images are saved. 
+---
 
 
 ### Question 18
@@ -458,8 +469,7 @@ The code runs until the breakpoint, and after that we can run the rest of the co
 > *using a custom container: ...*
 >
 > Answer:
-
---- question 18 fill here ---
+--- Compute Engine allow us to create virtual machines (instances) in which we can set up the environment needed to run our experiments. The main advantage is the hardware available, being this much better than the ones we can have in our local machines. We are using an Nvidia V100, which improves our training speed, achieving sweep hyperparameters tuning. At first, we had problems selecting the GPU, we tried in different regions to use an Nvidia T4, but it was not available. Finally, we tried to use an Nvidia V100, and we succeeded, but we forgot to change the region, so we ran all the training in the US. ---
 
 ### Question 19
 
@@ -467,16 +477,19 @@ The code runs until the breakpoint, and after that we can run the rest of the co
 > **You can take inspiration from [this figure](figures/bucket.png).**
 >
 > Answer:
---- [question19](figures/question19.jpeg) ---
 
-            
+![GCPbucket](figures/question19.jpeg)
+
+
 ### Question 20
 
 > **Upload one image of your GCP container registry, such that we can see the different images that you have stored.**
 > **You can take inspiration from [this figure](figures/registry.png).**
 >
 > Answer:
---- [question20](figures/question20.jpeg) ---
+
+![GCPcontainerRegistry](figures/question20.jpeg)
+
 
 
 ### Question 21
@@ -485,7 +498,9 @@ The code runs until the breakpoint, and after that we can run the rest of the co
 > **your project. You can take inspiration from [this figure](figures/build.png).**
 >
 > Answer:
---- [question21](figures/question21.jpeg) ---
+
+![GCPhistory](figures/question21.jpeg)
+
 
 
 ### Question 22
@@ -502,7 +517,10 @@ The code runs until the breakpoint, and after that we can run the rest of the co
 >
 > Answer:
 
---- question 22 fill here ---
+--- Deployment is very important in production stages to let people execute code without looking at it. 
+To be able to deploy the model, firs of all has been needed to develop an api. This api allow the users to interact with the application. For the development of the api, the package Fastapi has been used. The api consist of a function that receive an image which is passed to the model predictor. This predictor loads a model that has been trained previously. Finally, the output of the api is the  prediction of the model and the probability of being that class.  
+After having developed the api locally, we have built a docker container. This container has been pushed to the container registry in GCP. Once the container pushed, we have been able to develop a service which executes the container when a request is received. 
+Finally, executing the following link: https://api-service-x2zysz7rqa-ey.a.run.app and going to /docs, the predict function can be executed which need an image of a tomato leaf to predict if it has any issue. ---
 
 ### Question 23
 
@@ -551,8 +569,7 @@ The code runs until the breakpoint, and after that we can run the rest of the co
 > *Whenever we commit code and puch to github, it auto triggers ... and ... . From there the diagram shows ...*
 >
 > Answer:
-
---- question 25 fill here ---
+![MLOperationsPipeline](figures/MLOperationsPipeline.jpeg)
 
 ### Question 26
 
